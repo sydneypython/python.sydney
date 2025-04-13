@@ -1,0 +1,51 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Heading from "../components/Heading.astro";
+import '@fontsource/karantina';
+import '@fontsource/karantina/300.css';
+import '@fontsource/karantina/400.css';
+import '@fontsource/karantina/700.css';
+import '@fontsource/roboto';
+import '@fontsource/roboto/400.css';
+import "../styles/global.css";
+
+const { pageTitle } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <div class="min-h-screen font-body py-20 mx-auto max-w-xl md:max-w-4xl md:flex md:mt-20">
+      <aside class="flex flex-col space-y-5 items-center p-5 md:max-w-xs">
+        <a href="/">
+          <img src="/Sydney Python Logo circle.svg" alt="SydPy Logo" class="w-48 h-48 mb-4" />
+        </a>
+        
+        <p class="text-sm text-gray-600 mt-2 text-center">
+          Sydney Python or "SydPy" is a friendly and welcoming community for anyone using the Python programming language.
+        </p>
+      
+        <div class="flex flex-col space-y-5 w-full items-start">
+          <Heading level={1} >About SydPy</Heading>
+          <Navigation />
+        </div>
+        <p class="text-xs text-gray-400 mt-2 text-center mx-5">
+          SydPy is a volunteer led community initiative. python.sydney is used with permission and is not affiliated with the Python&nbsp;Software&nbsp;Foundation&nbsp;(PSF).
+        </p>
+      </aside>
+
+      
+      <slot />
+      
+    </div>
+    
+     <script>
+   //   import "../scripts/menu.js";
+    </script>
+  </body>
+</html>

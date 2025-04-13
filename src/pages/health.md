@@ -1,3 +1,6 @@
+---
+layout: ../layouts/Page.astro
+---
 # Health and Wellness Policy (incl. COVID)
 
 At Sydney Python, we are committed to creating an inclusive and welcoming environment for everyone, including those who may be at higher risk or prefer to take extra precautions.

@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import FutureEvents from "../components/FutureEvents.astro";
+import PastEvents from "../components/PastEvents.astro";
+
+const pageTitle = "Sydney Python Meetup";
+---
+
+<Base pageTitle={pageTitle}>
+  <main class="w-full p-5">
+    <FutureEvents />
+    <PastEvents/>
+  </main>
+</Base>
+
+
+

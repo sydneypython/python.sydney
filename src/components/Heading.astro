@@ -1,0 +1,5 @@
+---
+const { level } = Astro.props;
+const Element = `h${level}`;
+---
+<Element class="highlight text-base font-bold uppercase"><slot /></Element>

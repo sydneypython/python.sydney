@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import EventListItem from "./EventListItem.astro";
+import Heading from "./Heading.astro";
+
+const allEvents = await getCollection("events");
+const futureEvents = allEvents.filter(event => {
+  const eventDate = new Date(event.data.eventDate);
+  const now = new Date();
+  return eventDate > now;
+});
+const hasFutureEvents = futureEvents.length > 0;
+---
+<div class="flex flex-col space-y-5 items-center justify-center p-5">
+  <div class="flex flex-col space-y-5 w-full items-start">
+    <Heading level={2} >Upcoming Events</Heading>
+  </div>
+
+  {hasFutureEvents ? (
+    <ul class="flex flex-col w-full list-none space-y-5">
+    {futureEvents.map(event => (
+      <EventListItem 
+        key={event.id} 
+        title={event.data.title} 
+        eventDate={event.data.eventDate} 
+        link={`/events/${event.id}`} 
+      />
+    ))}
+  </ul>
+  ) : (
+    <div class="flex flex-col w-full items-center justify-center">
+      <p class="text-xs text-gray-400 mt-2 text-center mx-10">We'll announce our next meetup soon!</p>
+
+    </div>
+  )}
+
+
+  
+</div>

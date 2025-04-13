@@ -1,0 +1,17 @@
+---
+import EventListItem from "./EventListItem.astro";
+const { events } = Astro.props;
+---
+
+<ul class="flex flex-col w-full list-none space-y-5 first-child:my-0 px-0">
+  {events.map(event => (
+    <li class="px-0">
+    <EventListItem 
+      key={event.id} 
+      title={event.data.title} 
+      eventDate={event.data.eventDate} 
+      link={`/events/${event.id}`} 
+    />
+    </li>
+  ))}
+</ul>

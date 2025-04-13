@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Roboto:wght@400;600;700&display=swap");
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+
+/* :root {
+  --font-heading: "Karantina", sans-serif;
+  --font-body: "Roboto", sans-serif;
+} */
+
+@theme {
+  --color-primary-50: oklch(98.7% 0.022 95.892);
+  --color-primary-100: oklch(96.32% 0.05767 96.232);
+  --color-primary-200: oklch(92.64% 0.11733 96.361);
+  --color-primary-300: oklch(88.26% 0.165 92.22);
+  --color-primary-400: oklch(83.109% 0.18557 85.044);
+  --color-primary-500: oklch(77.157% 0.18514 70.695);
+  --color-primary-600: oklch(66.806% 0.17671 58.933);
+  --color-primary-700: oklch(55.654% 0.16129 49.613);
+  --color-primary-800: oklch(47.403% 0.13586 46.816);
+  --color-primary-900: oklch(41.451% 0.11143 46.519);
+  --color-primary-950: oklch(27.9% 0.077 46.25);
+
+  --font-heading: "Karantina", sans-serif;
+  --font-body: "Roboto", sans-serif;
+
+}
+
+.highlight {
+  position: relative;
+}
+
+.highlight:before {
+  content: "";
+  background-color: var(--color-primary-300);
+  width: 105%;
+  height: 1.1em;
+  position: absolute;
+  z-index: -1;
+  transform: rotate(-0.005turn);
+  left: -0.2em;
+  top: 0.125em;
+  padding: 0 0.2em;
+}
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+prose strong {
+  font-weight: 800
+}

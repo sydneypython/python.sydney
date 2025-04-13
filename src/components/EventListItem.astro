@@ -1,0 +1,50 @@
+---
+const { title, eventDate, link } = Astro.props;
+
+const formatEventDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+  return date.toLocaleDateString("en-AU", options);
+};
+
+const eventDay = formatEventDate(eventDate);
+---
+
+<!-- <li class="event-list-item mb-4">
+  <a href={link} class="text-blue-500 hover:underline">
+    <h3 class="text-lg font-heading font-bold">{title}</h3>
+  </a>
+  <p class="text-sm text-gray-600 font-heading font-light">{date}</p>
+</li> -->
+<a
+  href={link}
+  class="group relative flex flex-wrap w-full justify-between text-2xl font-light font-heading"
+>
+  <!-- <div class=""> -->
+  <span>{title}</span>
+  <!-- </div> -->
+  <div class="ml-auto flex flex-wrap items-center justify-end space-x-2.5">
+    <span class="font-body text-sm">{eventDay}</span>
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+    </svg>
+  </div>
+
+  <span class="absolute -bottom-0.5 left-0 w-0 transition-all duration-300 h-0.5 bg-primary-300 group-hover:w-full"></span>
+</a>

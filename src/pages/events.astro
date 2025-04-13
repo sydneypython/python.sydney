@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+
+import EventList from "../components/EventList.astro";
+
+const allEvents = (await getCollection("events")).sort((a, b) => {
+  const dateA = new Date(a.data.eventDate);
+  const dateB = new Date(b.data.eventDate);
+  return dateB - dateA; // Sort in descending order
+});
+
+import Base from '../layouts/Base.astro';
+const pageTitle = "All Events";
+---
+<Base pageTitle={pageTitle}>
+
+    <div class="flex flex-col space-y-5 w-full items-start">
+      <h1 class="highlight text-base font-bold uppercase">All Events</h1>
+    </div>
+    {allEvents.length === 0 ? (
+      <div class="flex flex-col w-full items-center justify-center">
+        <p class="text-xs text-gray-400 mt-2 text-center mx-10">Past events will show here once we run them =D</p>
+      </div>
+    ) : null}
+    <EventList events={allEvents} />
+    
+  
+</Base>
