@@ -1,0 +1,10 @@
+---
+import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+---
+<Base pageTitle={frontmatter.title} class="prose">
+  
+    <main class="w-full p-5 prose">
+    <slot class="prose"/>
+    </main>
+</Base>

@@ -1,3 +1,6 @@
+---
+layout: ../layouts/Page.astro
+---
 # Code of Conduct
 
 Be kind to others. Do not insult or put down others. Behave professionally. Remember that harassment and sexist, racist, or exclusionary jokes are not appropriate for Sydney Python.

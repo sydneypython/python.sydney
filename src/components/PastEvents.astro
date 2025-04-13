@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+
+import EventList from "../components/EventList.astro";
+import Heading from "./Heading.astro";
+
+const allEvents = (await getCollection("events")).filter(event => {
+  const eventDate = new Date(event.data.eventDate);
+  const now = new Date();
+  return eventDate < now;
+}).sort((a, b) => {
+  const dateA = new Date(a.data.eventDate);
+  const dateB = new Date(b.data.eventDate);
+  return dateB - dateA; // Sort in descending order
+});
+---
+
+<div class="flex flex-col space-y-5 items-center justify-center p-5">
+    <div class="flex flex-col space-y-5 w-full items-start">
+        <Heading level={2} >Past Events</Heading>
+    </div>
+    {allEvents.length === 0 ? (
+      <div class="flex flex-col w-full items-center justify-center">
+        <p class="text-xs text-gray-400 mt-2 text-center mx-10">Past events will show here once we run them =D</p>
+      </div>
+    ) : null}
+    <EventList events={allEvents} />
+  </div>
