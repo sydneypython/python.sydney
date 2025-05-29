@@ -3,7 +3,7 @@ layout: ../layouts/Page.astro
 ---
 # Speak at Sydney Python
 
-Speaking at a meetup is a great way to be involved in the local Python community. We welcome speakers of all experiences, including first time presentors.
+Speaking at a meetup is a great way to be involved in the local Python community. We welcome speakers of all experiences, including first time presenters.
 
 We're a friendly and welcoming community, and we're actively looking for new speakers and ideas.
 
@@ -12,7 +12,7 @@ Talks could include:
 * Lightning talks (5 minutes!)
 * Short talks
 * Technical talks
-* Skills talks
+* Other Skills talks
 * Tools talks
 * Things you’ve built or learnt, talks!
 
