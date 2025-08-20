@@ -7,7 +7,12 @@ const allEvents = await getCollection("events");
 const futureEvents = allEvents.filter(event => {
   const eventDate = new Date(event.data.eventDate);
   const now = new Date();
-  return eventDate > now;
+  // Include events happening today or in the future
+  return eventDate >= now;
+}).sort((a, b) => {
+  const dateA = new Date(a.data.eventDate);
+  const dateB = new Date(b.data.eventDate);
+  return dateA - dateB; // Sort in ascending order for future events
 });
 const hasFutureEvents = futureEvents.length > 0;
 ---

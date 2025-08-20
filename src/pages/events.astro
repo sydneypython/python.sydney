@@ -2,27 +2,66 @@
 import { getCollection } from "astro:content";
 
 import EventList from "../components/EventList.astro";
+import Heading from "../components/Heading.astro";
 
-const allEvents = (await getCollection("events")).sort((a, b) => {
+const allEvents = await getCollection("events");
+const now = new Date();
+
+// Filter future and current events (including events happening today)
+const futureEvents = allEvents.filter(event => {
+  const eventDate = new Date(event.data.eventDate);
+  return eventDate >= now;
+}).sort((a, b) => {
   const dateA = new Date(a.data.eventDate);
   const dateB = new Date(b.data.eventDate);
-  return dateB - dateA; // Sort in descending order
+  return dateA - dateB; // Sort in ascending order for future events
+});
+
+// Filter past events
+const pastEvents = allEvents.filter(event => {
+  const eventDate = new Date(event.data.eventDate);
+  return eventDate < now;
+}).sort((a, b) => {
+  const dateA = new Date(a.data.eventDate);
+  const dateB = new Date(b.data.eventDate);
+  return dateB - dateA; // Sort in descending order for past events
 });
 
 import Base from '../layouts/Base.astro';
 const pageTitle = "All Events";
 ---
 <Base pageTitle={pageTitle}>
-
-    <div class="flex flex-col space-y-5 w-full items-start">
+  <main class="w-full p-5">
+    <div class="flex flex-col space-y-5 w-full items-start mb-8">
       <h1 class="highlight text-base font-bold uppercase">All Events</h1>
     </div>
-    {allEvents.length === 0 ? (
-      <div class="flex flex-col w-full items-center justify-center">
-        <p class="text-xs text-gray-400 mt-2 text-center mx-10">Past events will show here once we run them =D</p>
+
+    {/* Current and Upcoming Events */}
+    <div class="flex flex-col space-y-5 items-center justify-center mb-10">
+      <div class="flex flex-col space-y-5 w-full items-start">
+        <Heading level={2}>Upcoming Events</Heading>
       </div>
-    ) : null}
-    <EventList events={allEvents} />
-    
-  
+      {futureEvents.length > 0 ? (
+        <EventList events={futureEvents} />
+      ) : (
+        <div class="flex flex-col w-full items-center justify-center">
+          <p class="text-xs text-gray-400 mt-2 text-center mx-10">We'll announce our next meetup soon!</p>
+        </div>
+      )}
+    </div>
+
+    {/* Past Events */}
+    <div class="flex flex-col space-y-5 items-center justify-center">
+      <div class="flex flex-col space-y-5 w-full items-start">
+        <Heading level={2}>Past Events</Heading>
+      </div>
+      {pastEvents.length > 0 ? (
+        <EventList events={pastEvents} />
+      ) : (
+        <div class="flex flex-col w-full items-center justify-center">
+          <p class="text-xs text-gray-400 mt-2 text-center mx-10">Past events will show here once we run them =D</p>
+        </div>
+      )}
+    </div>
+  </main>
 </Base>
